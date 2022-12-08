@@ -24,14 +24,14 @@ function GameCard(props) {
   };
 
   return (
-    <div className="card mb-5">
+    <div className="card mb-5 bg-dark">
       <img src={props.game.image} alt="Cover art missing" className="card-img-top mx-auto" />
       {!editMode && (
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item text-center fst-italic">{props.game.gameTitle}</li>
-          <li className="list-group-item text-center fst-italic">{props.game.gameConsole}</li>
-          <li className="list-group-item text-center fw-bold">{props.game.releaseYear}</li>
-          <li className="list-group-item text-center">{props.game.gameCondition}</li>
+        <ul className="list-group list-group-flush bg-dark text-light">
+          <li className="list-group-item text-center fst-italic bg-dark text-light">{props.game.gameTitle}</li>
+          <li className="list-group-item text-center fst-italic bg-dark text-light">{props.game.gameConsole}</li>
+          <li className="list-group-item text-center fw-bold bg-dark text-light">{props.game.releaseYear}</li>
+          <li className="list-group-item text-center bg-dark text-light">{props.game.gameCondition}</li>
           <button type="button" className="btn btn-sm btn-warning" onClick={() => setEditMode(true)}>
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>

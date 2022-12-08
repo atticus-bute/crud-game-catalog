@@ -24,13 +24,13 @@ function SearchGames(props){
         <label htmlFor="txtKeywords" className="form-label">Search</label>
         <input type="text" name="txtKeywords" id="txtKeywords" className='form-control' onChange={evt => setKeywords(evt.currentTarget.value)} value={keywords}/>
       </div>
-      <div className="col-md-4">
+      <div className="col-md-3">
         <label htmlFor="" className="form-label">Select Console</label>
         <select name="" id="" className="form-select">
           <option value="">Break So Bad</option>
         </select>
       </div>
-      <div className="col-md-4">
+      <div className="col-md-3">
         <button type='button' className='btn btn-lg btn-info mt-4' onClick={searchGamesWork}>Search</button>
       </div>
     </div>

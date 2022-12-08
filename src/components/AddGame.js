@@ -22,7 +22,7 @@ function AddGame(props){
   }
 
   return(
-    <div className="row mt-5">
+    <div className="row my-5 bg-dark border p-3">
       <div className="col-md-2">
         <label htmlFor="txtGameTitle" className="form-label">Enter game title:</label>
         <input type="text" name="txtGameTitle" id="txtGameTitle" className='form-control' onChange={(evt) => setTitle(evt.currentTarget.value)} value={gameTitle} />

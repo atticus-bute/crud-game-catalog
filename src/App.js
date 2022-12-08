@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import React, { useState, useEffect } from 'react';
 import AddGame from './components/AddGame';
 import GameCard from './components/GameCard';
+import NavbarLogin from './components/NavbarLogin';
 import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +15,8 @@ function App() {
   const [searchResults, setSearchResults] = useState(null);
   const [keywords, setKeywords] = useState('');
   const [gameCondition, setGameCondition] = useState('');
+  const [gameConsole, setGameConsole] = useState('');
+  const [releaseYear, setReleaseYear] = useState('');
 
   // ownedGames is the initial data hard coded into the project
   // {gameTitle:'', gameConsole:'', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/'},
@@ -56,10 +59,14 @@ function App() {
 
     // PS1 1994
     {gameTitle:'Austin Powers Pinball', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:2002, id:nanoid(), image:'images/austinPowersPinball.jpg'},
+    {gameTitle:'Castlevania: Symphony of the Night', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:1997, id:nanoid(), image:'images/castlevaniaSymphonyoftheNight.jpg'},
+    {gameTitle:'Crash Bandicoot', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:1997, id:nanoid(), image:'images/crashBandicoot.jpg'},
     {gameTitle:'Final Fantasy VII', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:1997, id:nanoid(), image:'images/finalFantasyVII.jpg'},
     {gameTitle:'Final Fantasy VIII', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:1999, id:nanoid(), image:'images/finalFantasyVIII.jpg'},
     {gameTitle:'Final Fantasy IX', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:2000, id:nanoid(), image:'images/finalFantasyIX.jpg'},
-    {gameTitle:'Castlevania: Symphony of the Night', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:1997, id:nanoid(), image:'images/castlevaniaSymphonyoftheNight.jpg'},
+    {gameTitle:'Final Fantasy Origins', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:2003, id:nanoid(), image:'images/finalFantasyOrigins.jpg'},
+    {gameTitle:'Mega Man X4', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:1997, id:nanoid(), image:'images/megaManX4.jpg'},
+    {gameTitle:'Mega Man X5', gameConsole:'Playstation', gameCondition:'CIB', releaseYear:2000, id:nanoid(), image:'images/megaManX5.jpg'},
     // Game Boy Color 1998
     {gameTitle:'The Legend of Zelda: Oracle of Seasons', gameConsole:'Nintendo Game Boy Color', gameCondition:'CIB', releaseYear:2001, id:nanoid(), image:'images/zeldaOracleofSeasons.jpg'},
 
@@ -76,12 +83,16 @@ function App() {
     {gameTitle:'Devil May Cry', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2001, id:nanoid(), image:'images/devilMayCry.jpg'},
     {gameTitle:'Devil May Cry 2', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2003, id:nanoid(), image:'images/devilMayCry2.jpg'},
     {gameTitle:'Devil May Cry 3: Dante\'s Awakening', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2005, id:nanoid(), image:'images/devilMayCry3.jpg'},
+    {gameTitle:'Final Fantasy X', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2001, id:nanoid(), image:'images/finalFantasyX.jpg'},
+    {gameTitle:'Final Fantasy X-2', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2003, id:nanoid(), image:'images/finalFantasyX2.jpg'},
+    {gameTitle:'Final Fantasy XII', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/finalFantasyXII.jpg'},
+    {gameTitle:'God Hand', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/godHand.jpg'},
     {gameTitle:'Kingdom Hearts', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2002, id:nanoid(), image:'images/kingdomHearts.jpg'},
+    {gameTitle:'Mega Man X8', gameConsole:'Playstation 2', gameCondition:'Loose', releaseYear:2004, id:nanoid(), image:'images/megaManX8.jpg'},
     {gameTitle:'Okami', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/okami.jpg'},
     {gameTitle:'Xenosaga Episode I: Der Wille zur Macht', gameConsole:'Playstation 2', gameCondition:'Incomplete', releaseYear:2002, id:nanoid(), image:'images/xenosaga.jpg'},
     {gameTitle:'Xenosaga Episode II: Jenseits von Gut und Böse', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2004, id:nanoid(), image:'images/xenosaga2.jpg'},
     {gameTitle:'Xenosaga Episode III: Also Sprach Zarathustra', gameConsole:'Playstation 2', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/xenosaga3.jpg'},
-    // {gameTitle:'', gameConsole:'Playstation 2', gameCondition:'', releaseYear:2001, id:nanoid(), image:'images/.jpg'},
 
     // Nintendo Gamecube 2001
     {gameTitle:'Baten Kaitos: Eternal Wings and the Lost Ocean', gameConsole:'Nintendo Gamecube', gameCondition:'CIB', releaseYear:2003, id:nanoid(), image:'images/batenKaitos.jpg'},
@@ -105,11 +116,11 @@ function App() {
     {gameTitle:'Paper Mario: The Thousand Year Door', gameConsole:'Nintendo Gamecube', gameCondition:'CIB', releaseYear:2004, id:nanoid(), image:'images/paperMario1000YearDoor.jpg'},
     {gameTitle:'Pikmin', gameConsole:'Nintendo Gamecube', gameCondition:'CIB', releaseYear:2001, id:nanoid(), image:'images/pikmin.jpg'},
     {gameTitle:'Pikmin2', gameConsole:'Nintendo Gamecube', gameCondition:'CIB', releaseYear:2004, id:nanoid(), image:'images/pikmin2.jpg'},
+    {gameTitle:'Star Fox: Assault', gameConsole:'Nintendo Gamecube', gameCondition:'Incomplete', releaseYear:2005, id:nanoid(), image:'images/starFoxAssault.jpg'},
     {gameTitle:'Super Mario Sunshine', gameConsole:'Nintendo Gamecube', gameCondition:'CIB', releaseYear:2002, id:nanoid(), image:'images/superMarioSunshine.jpg'},
     {gameTitle:'Super Smash Bros. Melee', gameConsole:'Nintendo Gamecube', gameCondition:'CIB', releaseYear:2001, id:nanoid(), image:'images/smashBrosMelee.jpg'},
     {gameTitle:'The Legend of Zelda: Wind Waker', gameConsole:'Nintendo Gamecube', gameCondition:'', releaseYear:2002, id:nanoid(), image:'images/zeldaWindWaker.jpg'},
     {gameTitle:'The Legend of Zelda: Twilight Princess', gameConsole:'Nintendo Gamecube', gameCondition:'', releaseYear:2006, id:nanoid(), image:'images/zeldaTwilightPrincess.jpg'},
-    // {gameTitle:'', gameConsole:'Nintendo Gamecube', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
 
     // Game Boy Advance 2001
     {gameTitle:'Final Fantasy VI Advance', gameConsole:'Nintendo Game Boy Advance', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/finalFantasyVIgba.jpg'},
@@ -135,11 +146,23 @@ function App() {
     {gameTitle:'Final Fantasy: The 4 Heroes of Light', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2009, id:nanoid(), image:'images/finalFantasy4HeroesofLight.jpg'},
     {gameTitle:'Fire Emblem: Shadow Dragon', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2008, id:nanoid(), image:'images/fireEmblemShadowDragon.jpg'},
     {gameTitle:'Golden Sun: Dark Dawn', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2010, id:nanoid(), image:'images/goldenSunDarkDawn.jpg'},
-    {gameTitle:'', gameConsole:'Nintendo DS', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
-    {gameTitle:'', gameConsole:'Nintendo DS', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
-    {gameTitle:'', gameConsole:'Nintendo DS', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
-    {gameTitle:'', gameConsole:'Nintendo DS', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
-
+    {gameTitle:'Kirby Canvas Curse', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2005, id:nanoid(), image:'images/kirbyCanvasCurse.jpg'},
+    {gameTitle:'Kirby Squeak Squad', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/kirbySqueakSquad.jpg'},
+    {gameTitle:'Kirby Super Star Ultra', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2008, id:nanoid(), image:'images/kirbySuperStarUltra.jpg'},
+    {gameTitle:'Kirby Mass Attack', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2011, id:nanoid(), image:'images/kirbyMassAttack.jpg'},
+    {gameTitle:'Lego Battles', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2009, id:nanoid(), image:'images/legoBattles.jpg'},
+    {gameTitle:'Mario Kart DS', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2005, id:nanoid(), image:'images/marioKartDS.jpg'},
+    {gameTitle:'Mario Party DS', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2007, id:nanoid(), image:'images/marioPartyDS.jpg'},
+    {gameTitle:'Mega Man Zero Collection', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2010, id:nanoid(), image:'images/megaManZeroCollection.jpg'},
+    {gameTitle:'Metroid Prime: Hunters', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/metroidPrimeHunters.jpg'},
+    {gameTitle:'Metroid Prime: Pinball', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2005, id:nanoid(), image:'images/metroidPrimePinball.jpg'},
+    {gameTitle:'Moon', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2009, id:nanoid(), image:'images/moon.jpg'},
+    {gameTitle:'New Super Mario Bros', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/newSuperMarioBros.jpg'},
+    {gameTitle:'Okami Den', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2010, id:nanoid(), image:'images/okamiDen.jpg'},
+    {gameTitle:'Pokémon Diamond', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/pokemonDiamond.jpg'},
+    {gameTitle:'Pokémon Pearl', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/pokemonPearl.jpg'},
+    {gameTitle:'Pokémon Platinum', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2008, id:nanoid(), image:'images/pokemonPlatinum.jpg'},
+    
     {
       gameTitle: 'Pokémon HeartGold',
       gameConsole: 'Nintendo DS',
@@ -156,6 +179,10 @@ function App() {
       id: nanoid(),
       image: 'images/pokemonSoulSilver.jpg',
     },
+    {gameTitle:'Pokémon Black', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2010, id:nanoid(), image:'images/pokemonBlack.jpg'},
+    {gameTitle:'Pokémon White', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2010, id:nanoid(), image:'images/pokemonWhite.jpg'},
+    {gameTitle:'Pokémon Black 2', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2012, id:nanoid(), image:'images/pokemonBlack2.jpg'},
+    {gameTitle:'Pokémon White 2', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2012, id:nanoid(), image:'images/pokemonWhite2.jpg'},
     {
       gameTitle: 'Radiant Historia',
       gameConsole: 'Nintendo DS',
@@ -164,6 +191,15 @@ function App() {
       id: nanoid(),
       image: 'images/radiantHistoria.jpg',
     },
+    {gameTitle:'Rhythm Heaven', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2009, id:nanoid(), image:'images/rhythmHeaven.jpg'},
+    {gameTitle:'Star Fox Command', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2006, id:nanoid(), image:'images/starFoxCommand.jpg'},
+    {gameTitle:'Super Mario 64 DS', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2004, id:nanoid(), image:'images/superMario64DS.jpg'},
+    {gameTitle:'Super Princess Peach', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2005, id:nanoid(), image:'images/superPrincessPeach.jpg'},
+    {gameTitle:'Super Scribblenauts', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2010, id:nanoid(), image:'images/superScribblenauts.jpg'},
+    {gameTitle:'The Legendary Starfy', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2008, id:nanoid(), image:'images/theLegendaryStarfy.jpg'},
+    {gameTitle:'The World Ends With You', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2007, id:nanoid(), image:'images/theWorldEndsWithYou.jpg'},
+    {gameTitle:'The Legend of Zelda: Phantom Hourglass', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2007, id:nanoid(), image:'images/zeldaPhantomHourglass.jpg'},
+    {gameTitle:'The Legend of Zelda: Spirit Tracks', gameConsole:'Nintendo DS', gameCondition:'CIB', releaseYear:2009, id:nanoid(), image:'images/zeldaSpiritTracks.jpg'},
 
     // PS3 2006
     {gameTitle:'Demon\'s Souls', gameConsole:'Playstation 3', gameCondition:'CIB', releaseYear:2009, id:nanoid(), image:'images/demonsSouls.jpg'},
@@ -185,10 +221,40 @@ function App() {
     {gameTitle:'', gameConsole:'Nintendo 3DS', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
 
     // Wii U 2012
-    {gameTitle:'', gameConsole:'Nintendo Wii U', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
+    {gameTitle:'Nintendo Land', gameConsole:'Nintendo Wii U', gameCondition:'CIB', releaseYear:2012, id:nanoid(), image:'images/nintendoLand.jpg'},
+    {gameTitle:'Pikmin 3', gameConsole:'Nintendo Wii U', gameCondition:'CIB', releaseYear:2013, id:nanoid(), image:'images/pikmin3.jpg'},
+    {gameTitle:'Star Fox: Zero', gameConsole:'Nintendo Wii U', gameCondition:'CIB', releaseYear:2016, id:nanoid(), image:'images/starFoxZero.jpg'},
+    {gameTitle:'Star Fox: Guard', gameConsole:'Nintendo Wii U', gameCondition:'MISB', releaseYear:2016, id:nanoid(), image:'images/starFoxGuard.jpg'},
+    {gameTitle:'Super Mario 3D World', gameConsole:'Nintendo Wii U', gameCondition:'CIB', releaseYear:2013, id:nanoid(), image:'images/superMario3DWorld.jpg'},
+    {gameTitle:'Super Smash Bros. for Wii U', gameConsole:'Nintendo Wii U', gameCondition:'CIB', releaseYear:2014, id:nanoid(), image:'images/smashBrosforWiiU.jpg'},
+    {gameTitle:'Xenoblade Chronicles X', gameConsole:'Nintendo Wii U', gameCondition:'CIB', releaseYear:2015, id:nanoid(), image:'images/xenobladeChroniclesX.jpg'},
 
     // Switch 2017
-    {gameTitle:'', gameConsole:'Nintendo Switch', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/.jpg'},
+    {gameTitle:'Avicii Invector: Encore Edition', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2017, id:nanoid(), image:'images/aviciiInvector.jpg'},
+    {gameTitle:'Bayonetta 2', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2018, id:nanoid(), image:'images/bayonetta2Switch.jpg'},
+    {gameTitle:'Bravely Default II', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2021, id:nanoid(), image:'images/bravelyDefault2.jpg'},
+    {gameTitle:'Cave Story +', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2017, id:nanoid(), image:'images/caveStory+.jpg'},
+    {gameTitle:'Collection of Mana', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2019, id:nanoid(), image:'images/collectionOfMana.jpg'},
+    {gameTitle:'Doom', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2017, id:nanoid(), image:'images/doomSwitch.jpg'},
+    {gameTitle:'Fire Emblem: Three Houses', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2019, id:nanoid(), image:'images/fireEmblemThreeHouses.jpg'},
+    {gameTitle:'Kirby Star Allies', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2018, id:nanoid(), image:'images/kirbyStarAllies.jpg'},
+    {gameTitle:'Kirby and the Forgotten Land', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2022, id:nanoid(), image:'images/kirbyandtheForgottenLand.jpg'},
+    {gameTitle:'Mega Man 11', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2018, id:nanoid(), image:'images/megaMan11.jpg'},
+    {gameTitle:'metroidDread', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2021, id:nanoid(), image:'images/metroidDread.jpg'},
+    {gameTitle:'Mortal Kombat 11', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2019, id:nanoid(), image:'images/mortalKombat11.jpg'},
+    {gameTitle:'NEO: The World Ends With You', gameConsole:'Nintendo Switch', gameCondition:'MISB', releaseYear:2021, id:nanoid(), image:'images/neoTheWorldEndsWithYou.jpg'},
+    {gameTitle:'Pikmin 3 Deluxe', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2020, id:nanoid(), image:'images/pikmin3Deluxe.jpg'},
+    {gameTitle:'Pokémon Let\'s Go Pikachu!', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2018, id:nanoid(), image:'images/pokemonLetsGoPikachu.jpg'},
+    {gameTitle:'Pokémon Sword', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2019, id:nanoid(), image:'images/pokemonSword.jpg'},
+    {gameTitle:'Shin Megami Tensei V', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2021, id:nanoid(), image:'images/shinMegamiTenseiV.jpg'},
+    {gameTitle:'Super Mario 3D All Stars', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2020, id:nanoid(), image:'images/superMario3DAllStars.jpg'},
+    {gameTitle:'Super Mario Maker 2', gameConsole:'Nintendo Switch', gameCondition:'2020', releaseYear:2020, id:nanoid(), image:'images/superMarioMaker2.jpg'},
+    {gameTitle:'Super Mario Odyssey', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2017, id:nanoid(), image:'images/superMarioOdyssey.jpg'},
+    {gameTitle:'Xenoblade Chronicles 2', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2017, id:nanoid(), image:'images/xenobladeChronicles2.jpg'},
+    {gameTitle:'Xenoblade Chronicles: Definitive Edition', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2020, id:nanoid(), image:'images/xenobladeChroniclesDefinitive.jpg'},
+    {gameTitle:'Xenoblade Chronicles 3', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2022, id:nanoid(), image:'images/xenobladeChronicles3.jpg'},
+    {gameTitle:'The Legend of Zelda: Breath of the Wild', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2017, id:nanoid(), image:'images/zeldaBreathoftheWild.jpg'},
+    {gameTitle:'The Legend of Zelda: Link\'s Awakening', gameConsole:'Nintendo Switch', gameCondition:'CIB', releaseYear:2019, id:nanoid(), image:'images/zeldaLinksAwakeningSwitch.jpg'},
 
     // {gameTitle:'', gameConsole:'', gameCondition:'', releaseYear:2000, id:nanoid(), image:'images/'},
   ];
@@ -228,14 +294,21 @@ function App() {
     if (gameCondition) {
       keywordArray.push(gameCondition);
     }
+    if (releaseYear) {
+      keywordArray.push(releaseYear);
+    }
+    if (gameConsole) {
+      keywordArray.push(gameConsole);
+    }
 
     if (keywordArray.length > 0) {
       const searchResults = gameCollection.filter((game) => {
         for (const word of keywordArray) {
           if (
             game.gameTitle.toLowerCase().includes(word) ||
-            game.gameConsole.toLowerCase().includes(word) ||
-            game.gameCondition.toLowerCase() === word.toLowerCase()
+            game.gameCondition.toLowerCase() === word.toLowerCase() ||
+            game.releaseYear === parseInt(word) ||
+            game.gameConsole.toLowerCase() === word.toLowerCase()
           ) {
             return true;
           }
@@ -263,11 +336,12 @@ function App() {
 
   return (
     <>
+    <NavbarLogin/>
       <div className="container">
         <div className="row mt-5">
           <div className="col-md-4">
             <label htmlFor="txtKeywords" className="form-label">
-              Search Title, Console
+              Search Title
             </label>
             <input
               type="text"
@@ -278,14 +352,56 @@ function App() {
               value={keywords}
             />
           </div>
-          <div className="col-md-4">
+          <div className="col-md-2">
+            <label htmlFor="" className="form-label">
+              Select Console
+            </label>
+            <select
+              value={gameCondition}
+              className="form-select"
+              onChange={(evt) => setGameConsole(evt.currentTarget.value)}
+            >
+              <option value=""> All Consoles </option>
+              {_(gameCollection)
+                .map((game) => game.gameConsole)
+                .sort()
+                .uniq()
+                .map((gameConsole) => (
+                  <option key={gameConsole} value={gameConsole}>
+                    {gameConsole}
+                  </option>
+                ))
+                .value()}
+            </select>
+          </div>
+          <div className="col-md-2">
+            <label htmlFor="" className="form-label">
+              Select Release Year
+            </label>
+            <select
+              value={releaseYear}
+              className="form-select"
+              onChange={(evt) => setReleaseYear(evt.currentTarget.value)}
+            >
+              <option value=""> All Years </option>
+              {_(gameCollection)
+                .map((game) => game.releaseYear)
+                .sort()
+                .uniq()
+                .map((releaseYear) => (
+                  <option key={releaseYear} value={releaseYear}>
+                    {releaseYear}
+                  </option>
+                ))
+                .value()}
+            </select>
+          </div>
+          <div className="col-md-2">
             <label htmlFor="" className="form-label">
               Select Condition
             </label>
             <select
               value={gameCondition}
-              name=""
-              id=""
               className="form-select"
               onChange={(evt) => setGameCondition(evt.currentTarget.value)}
             >
@@ -302,12 +418,13 @@ function App() {
                 .value()}
             </select>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-1">
             <button type="button" className="btn btn-lg btn-primary mt-4" onClick={searchGamesWork}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </div>
         </div>
+          <AddGame addGame={addGame} />
         <div className="row">
           {searchResults &&
             searchResults.map((game) => (
@@ -316,7 +433,6 @@ function App() {
               </div>
             ))}
         </div>
-        <AddGame addGame={addGame} />
       </div>
     </>
   );
